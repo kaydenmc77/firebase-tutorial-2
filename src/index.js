@@ -1,3 +1,7 @@
+import { app, analytics, database, auth, signInWithGoogle } from 'firebase-tutorial-2/firebaseConfig.js';
+
+import { signInWithGoogle } from 'firebase-tutorial-2/firebaseConfig.js';
+
 // access input field
 const input = document.querySelector('#todo-input');
 
@@ -77,3 +81,22 @@ document.querySelector('#submit').addEventListener('click', () => {
     document.querySelector('.todo-lists').removeChild(todo_el);
   });
 })
+
+function SignInButton() {
+  const handleSignIn = async () => {
+    try {
+      const user = await signInWithGoogle();
+      console.log('Signed in user:', user);
+      // Handle successful sign-in (e.g., update UI, navigate to a new page)
+    } catch (error) {
+      console.error('Sign-in error:', error);
+      // Handle sign-in error (e.g., show error message to user)
+    }
+  };
+
+  return (
+    <button onClick={handleSignIn}>Sign in with Google</button>
+  );
+}
+
+export default SignInButton;
